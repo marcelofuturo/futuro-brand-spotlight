@@ -32,11 +32,24 @@ function FooterLogo({ className = "" }: { className?: string }) {
   );
 }
 
+function SectionDivider() {
+  return (
+    <div className="py-12 flex items-center justify-center px-6">
+      <div className="flex items-center w-full max-w-4xl">
+        <div className="h-0.5 flex-1 bg-gradient-to-r from-transparent to-border" />
+        <div className="mx-4 h-2 w-2 rounded-full bg-magenta" />
+        <div className="h-0.5 flex-1 bg-gradient-to-l from-transparent to-border" />
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <Hero />
+      <SectionDivider />
       <WhyFuturo />
       <Products />
       <Partners />
@@ -122,10 +135,6 @@ function Hero() {
           </a>
         </div>
 
-        {/* Clean divider between hero and next section */}
-        <div className="mt-16 flex items-center justify-center px-6">
-          <div className="h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-border to-transparent" />
-        </div>
       </div>
     </section>
   );
