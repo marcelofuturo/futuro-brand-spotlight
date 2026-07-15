@@ -112,13 +112,13 @@ function Hero() {
           </a>
         </div>
 
-        {/* Marquee-style repetition of the domain, echoing the brand collateral */}
-        <div className="mt-16 overflow-hidden border-y border-border/70 py-4">
-          <div className="flex gap-10 whitespace-nowrap text-sm font-medium text-muted-foreground/70 tracking-widest uppercase">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <span key={i} className="flex items-center gap-10">
+        {/* Soft marquee divider — gentle motion, lighter palette */}
+        <div className="mt-16 overflow-hidden border-y border-border/40 py-5">
+          <div className="marquee-track flex gap-16 whitespace-nowrap text-xs font-medium text-muted-foreground/50 tracking-[0.2em] uppercase">
+            {Array.from({ length: 16 }).map((_, i) => (
+              <span key={i} className="flex items-center gap-16">
                 futuro.com.vc
-                <span className="h-1 w-1 rounded-full bg-magenta" />
+                <span className="h-1 w-1 rounded-full bg-primary/40" />
               </span>
             ))}
           </div>
