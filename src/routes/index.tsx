@@ -112,16 +112,9 @@ function Hero() {
           </a>
         </div>
 
-        {/* Soft marquee divider — gentle motion, lighter palette */}
-        <div className="mt-16 overflow-hidden border-y border-border/40 py-5">
-          <div className="marquee-track flex gap-16 whitespace-nowrap text-xs font-medium text-muted-foreground/50 tracking-[0.2em] uppercase">
-            {Array.from({ length: 16 }).map((_, i) => (
-              <span key={i} className="flex items-center gap-16">
-                futuro.com.vc
-                <span className="h-1 w-1 rounded-full bg-primary/40" />
-              </span>
-            ))}
-          </div>
+        {/* Clean divider between hero and next section */}
+        <div className="mt-16 flex items-center justify-center px-6">
+          <div className="h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
       </div>
     </section>
