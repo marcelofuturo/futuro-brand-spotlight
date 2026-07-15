@@ -94,11 +94,6 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/85 to-background" />
 
       <div className="relative mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-32 md:pb-36">
-        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-magenta" />
-          Assessoria de crédito imobiliário
-        </div>
-
         <h1 className="mt-6 text-5xl md:text-7xl font-bold leading-[1.02] text-balance lowercase">
           mais crédito,
           <br />
