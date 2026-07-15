@@ -5,7 +5,7 @@ import keys from "@/assets/futuro-keys.jpg";
 import portrait1 from "@/assets/futuro-portrait-1.jpg";
 import portrait2 from "@/assets/futuro-portrait-2.jpg";
 import bankLogos from "@/assets/bank-logos.jpg.asset.json";
-import logoAsset from "@/assets/logo-mono-pos-site.png.asset.json";
+import logoAsset from "@/assets/logo-pos-site-v2.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -550,7 +550,7 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-5 pt-16 pb-10">
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
-            <Logo className="h-10 w-auto object-contain brightness-0 invert" />
+            <Logo className="h-10 w-auto object-contain bg-cream rounded-xl p-3" />
             <p className="mt-2 text-cream/70 text-sm">Mais crédito, mais futuro.</p>
             <p className="mt-6 text-sm text-cream/60 max-w-sm leading-relaxed">
               Assessoria de crédito imobiliário especializada em Financiamento Imobiliário e
