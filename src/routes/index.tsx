@@ -177,7 +177,7 @@ function Products() {
         "Análise inicial em até 24 horas",
         "Cotação em vários bancos parceiros",
         "Use seu FGTS — a gente cuida do resto",
-        "Até 360 meses para pagar",
+        "Até 420 meses para pagar",
         "ITBI e custos de registro podem entrar",
       ],
     },
