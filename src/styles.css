@@ -126,16 +126,3 @@
   color: transparent;
 }
 
-.marquee-track {
-  width: max-content;
-  animation: marquee-scroll 40s linear infinite;
-}
-
-@keyframes marquee-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
