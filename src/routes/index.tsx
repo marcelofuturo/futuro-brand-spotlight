@@ -5,6 +5,7 @@ import keys from "@/assets/futuro-keys.jpg";
 import portrait1 from "@/assets/futuro-portrait-1.jpg";
 import portrait2 from "@/assets/futuro-portrait-2.jpg";
 import bankLogos from "@/assets/bank-logos.jpg.asset.json";
+import logoAsset from "@/assets/logo-pos-site.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -12,9 +13,11 @@ export const Route = createFileRoute("/")({
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <span className={`font-bold tracking-tight lowercase ${className}`}>
-      futuro<span className="text-magenta">.</span>
-    </span>
+    <img
+      src={logoAsset.url}
+      alt="Futuro"
+      className={`h-7 w-auto object-contain ${className}`}
+    />
   );
 }
 
