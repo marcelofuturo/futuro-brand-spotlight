@@ -5,7 +5,7 @@ import keys from "@/assets/futuro-keys.jpg";
 import portrait1 from "@/assets/futuro-portrait-1.jpg";
 import portrait2 from "@/assets/futuro-portrait-2.jpg";
 import bankLogos from "@/assets/bank-logos.jpg.asset.json";
-import logoAsset from "@/assets/logo-mono-pos-site.png.asset.json";
+import logoAsset from "@/assets/logo-pos-site-v2.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
