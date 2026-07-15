@@ -22,6 +22,16 @@ function Logo({ className = "" }: { className?: string }) {
   );
 }
 
+function FooterLogo({ className = "" }: { className?: string }) {
+  return (
+    <img
+      src={footerLogoAsset.url}
+      alt="Futuro"
+      className={`h-7 w-auto object-contain ${className}`}
+    />
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
