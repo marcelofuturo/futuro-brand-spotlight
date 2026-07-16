@@ -13,6 +13,18 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function formatBRL(value: string) {
+  const digits = value.replace(/\D/g, "");
+  if (!digits) return "";
+  const num = Number(digits) / 100;
+  return num.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+  });
+}
+
+
 function Logo({ className = "" }: { className?: string }) {
   return (
     <img
