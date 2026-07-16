@@ -199,8 +199,7 @@ function Hero() {
             className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-soft space-y-5"
           >
             <div>
-              <p className="text-xs font-mono text-magenta">Simulador</p>
-              <h2 className="mt-1 text-2xl font-semibold">Simule seu financiamento</h2>
+              <h2 className="text-2xl font-semibold">Simule seu financiamento</h2>
               <p className="mt-1 text-sm text-muted-foreground">
                 Preencha os dados para uma estimativa inicial.
               </p>
