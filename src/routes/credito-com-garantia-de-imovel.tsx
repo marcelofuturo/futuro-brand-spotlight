@@ -56,8 +56,7 @@ function Simulator() {
       className="rounded-3xl border border-border bg-card p-6 md:p-7 shadow-soft space-y-5"
     >
       <div>
-        <p className="text-xs font-mono text-magenta">Simulador</p>
-        <h2 className="mt-1 text-xl font-semibold">Simule seu crédito</h2>
+        <h2 className="text-xl font-semibold">Simule seu crédito</h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Estimativa rápida, sem compromisso.
         </p>
