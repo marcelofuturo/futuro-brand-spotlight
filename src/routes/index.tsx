@@ -35,11 +35,7 @@ function FooterLogo({ className = "" }: { className?: string }) {
 function SectionDivider() {
   return (
     <div className="py-12 flex items-center justify-center px-6">
-      <div className="flex items-center w-full max-w-4xl">
-        <div className="h-0.5 flex-1 bg-gradient-to-r from-transparent to-border" />
-        <div className="mx-4 h-2 w-2 rounded-full bg-magenta" />
-        <div className="h-0.5 flex-1 bg-gradient-to-l from-transparent to-border" />
-      </div>
+      <div className="h-0.5 w-full max-w-4xl bg-gradient-to-r from-transparent via-border to-transparent" />
     </div>
   );
 }
