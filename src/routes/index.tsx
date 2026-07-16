@@ -261,7 +261,7 @@ function Hero() {
               Simular
             </button>
             <p className="text-xs text-muted-foreground text-center">
-              Simulação sem compromisso. Um consultor entra em contato.
+              Simulação sem compromisso.
             </p>
           </form>
         </div>
