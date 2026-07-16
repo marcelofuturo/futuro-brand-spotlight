@@ -235,7 +235,8 @@ function Hero() {
             </div>
 
             <div>
-              <label htmlFor="home-prazo" className="block text-smash-medium mb-2">
+              <label htmlFor="home-prazo" className="block text-sm font-medium mb-2">
+
                 Prazo para pagar: <span className="text-magenta">{prazo} anos</span>
               </label>
               <input
