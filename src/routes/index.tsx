@@ -624,8 +624,8 @@ function Footer() {
           <div>
             <p className="text-xs uppercase tracking-widest text-cream/50">Produtos</p>
             <ul className="mt-4 space-y-2 text-sm text-cream/85">
-              <li><a href="#produtos" className="hover:text-magenta transition">Financiamento Imobiliário</a></li>
-              <li><a href="#produtos" className="hover:text-magenta transition">Crédito com Garantia</a></li>
+              <li><Link to="/financiamento-imobiliario" className="hover:text-magenta transition">Financiamento Imobiliário</Link></li>
+              <li><Link to="/credito-com-garantia-de-imovel" className="hover:text-magenta transition">Crédito com Garantia</Link></li>
               <li><a href="#contato" className="hover:text-magenta transition">Para Parceiros</a></li>
             </ul>
           </div>
