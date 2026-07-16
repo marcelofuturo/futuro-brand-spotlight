@@ -148,6 +148,10 @@ function Header() {
 }
 
 function Hero() {
+  const [valorImovel, setValorImovel] = useState("");
+  const [valorFin, setValorFin] = useState("");
+  const [prazo, setPrazo] = useState("30");
+
   return (
     <section id="top" className="relative overflow-hidden">
       <img
@@ -159,39 +163,112 @@ function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/85 to-background" />
 
-      <div className="relative mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-32 md:pb-36">
+      <div className="relative mx-auto max-w-6xl px-5 pt-16 pb-20 md:pt-24 md:pb-28">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] text-balance lowercase">
+              mais crédito,
+              <br />
+              <span className="text-gradient-brand">mais futuro.</span>
+            </h1>
 
-        <h1 className="mt-6 text-5xl md:text-7xl font-bold leading-[1.02] text-balance lowercase">
-          mais crédito,
-          <br />
-          <span className="text-gradient-brand">mais futuro.</span>
-        </h1>
+            <p className="mt-6 max-w-xl text-lg md:text-xl text-muted-foreground text-balance">
+              Financiamento imobiliário e crédito com garantia de imóvel, guiados por gente de verdade.
+              Você sempre sabe o próximo passo, o prazo e o custo antes de decidir —
+              com clareza, confiança e ritmo.
+            </p>
 
-        <p className="mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground text-balance">
-          Financiamento imobiliário e crédito com garantia de imóvel, guiados por gente de verdade.
-          Você sempre sabe o próximo passo, o prazo e o custo antes de decidir —
-          com clareza, confiança e ritmo.
-        </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#contato"
+                className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-6 py-3 font-medium hover:opacity-90 transition shadow-soft"
+              >
+                Quero falar com um consultor
+              </a>
+              <a
+                href="#como-funciona"
+                className="inline-flex items-center justify-center rounded-full border border-border bg-card/70 backdrop-blur px-6 py-3 font-medium hover:bg-card transition"
+              >
+                Como funciona
+              </a>
+            </div>
+          </div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href="#contato"
-            className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-6 py-3 font-medium hover:opacity-90 transition shadow-soft"
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-soft space-y-5"
           >
-            Quero fazer uma simulação
-          </a>
-          <a
-            href="#como-funciona"
-            className="inline-flex items-center justify-center rounded-full border border-border bg-card/70 backdrop-blur px-6 py-3 font-medium hover:bg-card transition"
-          >
-            Como funciona
-          </a>
+            <div>
+              <p className="text-xs font-mono text-magenta">Simulador</p>
+              <h2 className="mt-1 text-2xl font-semibold">Simule seu financiamento</h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Preencha os dados para uma estimativa inicial.
+              </p>
+            </div>
+
+            <div>
+              <label htmlFor="home-valor-imovel" className="block text-sm font-medium mb-2">
+                Valor do imóvel
+              </label>
+              <input
+                id="home-valor-imovel"
+                inputMode="numeric"
+                placeholder="R$ 0,00"
+                value={valorImovel}
+                onChange={(e) => setValorImovel(formatBRL(e.target.value))}
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-magenta"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="home-valor-financiamento" className="block text-sm font-medium mb-2">
+                Valor do financiamento
+              </label>
+              <input
+                id="home-valor-financiamento"
+                inputMode="numeric"
+                placeholder="R$ 0,00"
+                value={valorFin}
+                onChange={(e) => setValorFin(formatBRL(e.target.value))}
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-magenta"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="home-prazo" className="block text-smash-medium mb-2">
+                Prazo para pagar: <span className="text-magenta">{prazo} anos</span>
+              </label>
+              <input
+                id="home-prazo"
+                type="range"
+                min={1}
+                max={35}
+                value={prazo}
+                onChange={(e) => setPrazo(e.target.value)}
+                className="w-full accent-magenta"
+              />
+              <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                <span>1 ano</span>
+                <span>35 anos</span>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full rounded-full bg-foreground text-background px-6 py-3.5 font-semibold hover:opacity-90 transition"
+            >
+              Simular
+            </button>
+            <p className="text-xs text-muted-foreground text-center">
+              Simulação sem compromisso. Um consultor entra em contato.
+            </p>
+          </form>
         </div>
-
       </div>
     </section>
   );
 }
+
 
 function WhyFuturo() {
   const items = [
