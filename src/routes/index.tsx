@@ -229,6 +229,7 @@ function Products() {
   const products = [
     {
       name: "Financiamento Imobiliário",
+      href: "/financiamento-imobiliario" as const,
       pitch: "A conquista do seu imóvel com um processo guiado, do crédito ao registro.",
       bullets: [
         "Análise inicial em até 24 horas",
@@ -240,6 +241,7 @@ function Products() {
     },
     {
       name: "Crédito com Garantia de Imóvel",
+      href: "/credito-com-garantia-de-imovel" as const,
       pitch: "Use o valor do seu imóvel para destravar seus projetos, com taxas menores e prazos longos.",
       bullets: [
         "A partir de 1,07% a.m. + IPCA (sujeito a análise)",
