@@ -33,8 +33,8 @@ export function SiteHeader() {
           <Logo className="text-xl" />
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <Link to="/por-que-a-futuro" className="hover:text-foreground transition">
-            Por que a Futuro
+          <Link to="/sobre-nos" className="hover:text-foreground transition">
+            Sobre Nós
           </Link>
 
           <div
@@ -136,7 +136,7 @@ export function SiteFooter() {
           <div>
             <p className="text-xs uppercase tracking-widest text-cream/50">Empresa</p>
             <ul className="mt-4 space-y-2 text-sm text-cream/85">
-              <li><Link to="/por-que-a-futuro" className="hover:text-magenta transition">Sobre a Futuro</Link></li>
+              <li><Link to="/sobre-nos" className="hover:text-magenta transition">Sobre Nós</Link></li>
               
               <li><a href="/#contato" className="hover:text-magenta transition">Contato</a></li>
             </ul>

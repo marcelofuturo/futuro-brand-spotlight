@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SobreNosRouteImport } from './routes/sobre-nos'
 import { Route as PorQueAFuturoRouteImport } from './routes/por-que-a-futuro'
 import { Route as FinanciamentoImobiliarioRouteImport } from './routes/financiamento-imobiliario'
 import { Route as CreditoComGarantiaDeImovelRouteImport } from './routes/credito-com-garantia-de-imovel'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SobreNosRoute = SobreNosRouteImport.update({
+  id: '/sobre-nos',
+  path: '/sobre-nos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PorQueAFuturoRoute = PorQueAFuturoRouteImport.update({
   id: '/por-que-a-futuro',
   path: '/por-que-a-futuro',
@@ -42,12 +48,14 @@ export interface FileRoutesByFullPath {
   '/credito-com-garantia-de-imovel': typeof CreditoComGarantiaDeImovelRoute
   '/financiamento-imobiliario': typeof FinanciamentoImobiliarioRoute
   '/por-que-a-futuro': typeof PorQueAFuturoRoute
+  '/sobre-nos': typeof SobreNosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/credito-com-garantia-de-imovel': typeof CreditoComGarantiaDeImovelRoute
   '/financiamento-imobiliario': typeof FinanciamentoImobiliarioRoute
   '/por-que-a-futuro': typeof PorQueAFuturoRoute
+  '/sobre-nos': typeof SobreNosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -55,6 +63,7 @@ export interface FileRoutesById {
   '/credito-com-garantia-de-imovel': typeof CreditoComGarantiaDeImovelRoute
   '/financiamento-imobiliario': typeof FinanciamentoImobiliarioRoute
   '/por-que-a-futuro': typeof PorQueAFuturoRoute
+  '/sobre-nos': typeof SobreNosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -63,18 +72,21 @@ export interface FileRouteTypes {
     | '/credito-com-garantia-de-imovel'
     | '/financiamento-imobiliario'
     | '/por-que-a-futuro'
+    | '/sobre-nos'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/credito-com-garantia-de-imovel'
     | '/financiamento-imobiliario'
     | '/por-que-a-futuro'
+    | '/sobre-nos'
   id:
     | '__root__'
     | '/'
     | '/credito-com-garantia-de-imovel'
     | '/financiamento-imobiliario'
     | '/por-que-a-futuro'
+    | '/sobre-nos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -82,10 +94,18 @@ export interface RootRouteChildren {
   CreditoComGarantiaDeImovelRoute: typeof CreditoComGarantiaDeImovelRoute
   FinanciamentoImobiliarioRoute: typeof FinanciamentoImobiliarioRoute
   PorQueAFuturoRoute: typeof PorQueAFuturoRoute
+  SobreNosRoute: typeof SobreNosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sobre-nos': {
+      id: '/sobre-nos'
+      path: '/sobre-nos'
+      fullPath: '/sobre-nos'
+      preLoaderRoute: typeof SobreNosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/por-que-a-futuro': {
       id: '/por-que-a-futuro'
       path: '/por-que-a-futuro'
@@ -122,6 +142,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreditoComGarantiaDeImovelRoute: CreditoComGarantiaDeImovelRoute,
   FinanciamentoImobiliarioRoute: FinanciamentoImobiliarioRoute,
   PorQueAFuturoRoute: PorQueAFuturoRoute,
+  SobreNosRoute: SobreNosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
