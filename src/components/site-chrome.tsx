@@ -33,8 +33,8 @@ export function SiteHeader() {
           <Logo className="text-xl" />
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <Link to="/por-que-a-futuro" className="hover:text-foreground transition">
-            Por que a Futuro
+          <Link to="/sobre-nos" className="hover:text-foreground transition">
+            Sobre Nós
           </Link>
 
           <div
