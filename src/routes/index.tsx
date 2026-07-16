@@ -60,12 +60,7 @@ function Index() {
 }
 
 function Header() {
-  const links = [
-    ["Por que a Futuro", "#por-que"],
-    ["Produtos", "#produtos"],
-    ["Como funciona", "#como-funciona"],
-    ["Contato", "#contato"],
-  ] as const;
+  const [openProducts, setOpenProducts] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border/60">
@@ -74,11 +69,60 @@ function Header() {
           <Logo className="text-xl" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          {links.map(([label, href]) => (
-            <a key={href} href={href} className="hover:text-foreground transition">
-              {label}
-            </a>
-          ))}
+          <a href="#por-que" className="hover:text-foreground transition">
+            Por que a Futuro
+          </a>
+
+          <div
+            className="relative"
+            onMouseEnter={() => setOpenProducts(true)}
+            onMouseLeave={() => setOpenProducts(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setOpenProducts((v) => !v)}
+              className="hover:text-foreground transition inline-flex items-center gap-1"
+              aria-haspopup="menu"
+              aria-expanded={openProducts}
+            >
+              Produtos
+              <span aria-hidden className="text-xs">▾</span>
+            </button>
+            {openProducts && (
+              <div role="menu" className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72">
+                <div className="rounded-2xl border border-border bg-card shadow-soft overflow-hidden">
+                  <Link
+                    to="/financiamento-imobiliario"
+                    className="block px-4 py-3 text-sm text-foreground hover:bg-secondary transition"
+                    role="menuitem"
+                  >
+                    <div className="font-semibold">Financiamento Imobiliário</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">
+                      Conquiste seu imóvel com assessoria completa.
+                    </div>
+                  </Link>
+                  <div className="h-px bg-border" />
+                  <Link
+                    to="/credito-com-garantia-de-imovel"
+                    className="block px-4 py-3 text-sm text-foreground hover:bg-secondary transition"
+                    role="menuitem"
+                  >
+                    <div className="font-semibold">Crédito com Garantia de Imóvel</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">
+                      Use seu imóvel para destravar novos projetos.
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <a href="#como-funciona" className="hover:text-foreground transition">
+            Como funciona
+          </a>
+          <a href="#contato" className="hover:text-foreground transition">
+            Contato
+          </a>
         </nav>
         <a
           href="#contato"
