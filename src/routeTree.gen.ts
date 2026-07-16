@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PorQueAFuturoRouteImport } from './routes/por-que-a-futuro'
 import { Route as FinanciamentoImobiliarioRouteImport } from './routes/financiamento-imobiliario'
 import { Route as CreditoComGarantiaDeImovelRouteImport } from './routes/credito-com-garantia-de-imovel'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PorQueAFuturoRoute = PorQueAFuturoRouteImport.update({
+  id: '/por-que-a-futuro',
+  path: '/por-que-a-futuro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FinanciamentoImobiliarioRoute =
   FinanciamentoImobiliarioRouteImport.update({
     id: '/financiamento-imobiliario',
@@ -35,17 +41,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/credito-com-garantia-de-imovel': typeof CreditoComGarantiaDeImovelRoute
   '/financiamento-imobiliario': typeof FinanciamentoImobiliarioRoute
+  '/por-que-a-futuro': typeof PorQueAFuturoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/credito-com-garantia-de-imovel': typeof CreditoComGarantiaDeImovelRoute
   '/financiamento-imobiliario': typeof FinanciamentoImobiliarioRoute
+  '/por-que-a-futuro': typeof PorQueAFuturoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/credito-com-garantia-de-imovel': typeof CreditoComGarantiaDeImovelRoute
   '/financiamento-imobiliario': typeof FinanciamentoImobiliarioRoute
+  '/por-que-a-futuro': typeof PorQueAFuturoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -53,23 +62,37 @@ export interface FileRouteTypes {
     | '/'
     | '/credito-com-garantia-de-imovel'
     | '/financiamento-imobiliario'
+    | '/por-que-a-futuro'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/credito-com-garantia-de-imovel' | '/financiamento-imobiliario'
+  to:
+    | '/'
+    | '/credito-com-garantia-de-imovel'
+    | '/financiamento-imobiliario'
+    | '/por-que-a-futuro'
   id:
     | '__root__'
     | '/'
     | '/credito-com-garantia-de-imovel'
     | '/financiamento-imobiliario'
+    | '/por-que-a-futuro'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreditoComGarantiaDeImovelRoute: typeof CreditoComGarantiaDeImovelRoute
   FinanciamentoImobiliarioRoute: typeof FinanciamentoImobiliarioRoute
+  PorQueAFuturoRoute: typeof PorQueAFuturoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/por-que-a-futuro': {
+      id: '/por-que-a-futuro'
+      path: '/por-que-a-futuro'
+      fullPath: '/por-que-a-futuro'
+      preLoaderRoute: typeof PorQueAFuturoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/financiamento-imobiliario': {
       id: '/financiamento-imobiliario'
       path: '/financiamento-imobiliario'
@@ -98,6 +121,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreditoComGarantiaDeImovelRoute: CreditoComGarantiaDeImovelRoute,
   FinanciamentoImobiliarioRoute: FinanciamentoImobiliarioRoute,
+  PorQueAFuturoRoute: PorQueAFuturoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
