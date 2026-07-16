@@ -191,6 +191,12 @@ function Hero() {
               >
                 Como funciona
               </a>
+              <a
+                href="#contato"
+                className="inline-flex items-center justify-center rounded-full border border-magenta/30 text-magenta px-6 py-3 font-medium hover:bg-magenta/5 transition"
+              >
+                Seja um parceiro
+              </a>
             </div>
           </div>
 
