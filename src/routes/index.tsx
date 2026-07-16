@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import heroBg from "@/assets/futuro-hero.jpg";
 import family from "@/assets/futuro-family.jpg";
 import keys from "@/assets/futuro-keys.jpg";
