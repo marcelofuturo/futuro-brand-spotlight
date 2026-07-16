@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import heroBg from "@/assets/futuro-hero.jpg";
+import familiaEmCasa from "@/assets/familia-em-casa.jpg";
 import family from "@/assets/futuro-family.jpg";
 import keys from "@/assets/futuro-keys.jpg";
 import portrait1 from "@/assets/futuro-portrait-1.jpg";
