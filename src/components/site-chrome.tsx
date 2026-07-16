@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import logoAsset from "@/assets/logo-pos-site-v2.png.asset.json";
-import footerLogoAsset from "@/assets/logo-mono-pos-site-1-2.png.asset.json";
+import footerLogoAsset from "@/assets/logo-mono-neg-v1.png.asset.json";
 
 function Logo({ className = "" }: { className?: string }) {
   return (
