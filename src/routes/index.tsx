@@ -289,13 +289,13 @@ function Products() {
                 ))}
               </ul>
 
-              <a
-                href="#contato"
+              <Link
+                to={p.href}
                 className="mt-8 inline-flex self-start items-center gap-2 rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:opacity-90 transition"
               >
                 Saiba mais
                 <span aria-hidden>→</span>
-              </a>
+              </Link>
             </article>
           ))}
         </div>
