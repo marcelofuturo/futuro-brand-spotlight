@@ -28,6 +28,7 @@ function SobreNosPage() {
       <SiteHeader />
       <Hero />
       <Missao />
+      <Manifesto />
       <Fundadores />
       <CTA />
       <SiteFooter />
