@@ -70,14 +70,14 @@ function Hero() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative flex items-center justify-center">
             <div className="absolute -inset-6 bg-gradient-brand opacity-10 blur-3xl rounded-full" />
             <img
-              src={heroIllustration}
-              alt="Ilustração representando a jornada do crédito imobiliário com a Futuro"
-              width={1024}
-              height={1024}
-              className="relative w-full h-auto rounded-3xl border border-border shadow-soft object-cover aspect-square"
+              src={iconeLogo.url}
+              alt="Logo Futuro"
+              width={512}
+              height={512}
+              className="relative w-full max-w-md h-auto"
             />
           </div>
         </div>
