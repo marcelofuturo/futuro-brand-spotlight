@@ -87,6 +87,9 @@ export function SiteHeader() {
           <a href="/#como-funciona" className="hover:text-foreground transition">
             Como funciona
           </a>
+          <Link to="/sobre-nos" className="hover:text-foreground transition">
+            Sobre nós
+          </Link>
           <a href="/#contato" className="hover:text-foreground transition">
             Contato
           </a>
