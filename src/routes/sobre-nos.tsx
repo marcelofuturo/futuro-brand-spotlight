@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import iconeLogo from "@/assets/icone-logo.png.asset.json";
 
 export const Route = createFileRoute("/sobre-nos")({
   head: () => ({
@@ -40,45 +39,32 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/40 via-background to-background" />
-      <div className="relative mx-auto max-w-6xl px-5 pt-16 pb-20 md:pt-24 md:pb-28">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-sm font-medium text-magenta uppercase tracking-widest">
-              Sobre nós
-            </p>
-            <h1 className="mt-4 text-4xl md:text-6xl font-bold leading-[1.05] text-balance lowercase">
-              por que a <span className="text-gradient-brand">Futuro</span>.
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground text-balance leading-relaxed">
-              Transformamos uma jornada complexa em uma experiência simples,
-              transparente e previsível.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#missao"
-                className="inline-flex items-center rounded-full bg-foreground text-background px-6 py-3 text-sm font-semibold hover:opacity-90 transition"
-              >
-                Conheça nossa plataforma
-              </a>
-              <Link
-                to="/"
-                hash="contato"
-                className="inline-flex items-center rounded-full border border-magenta/30 text-magenta px-6 py-3 text-sm font-semibold hover:bg-magenta hover:text-white transition"
-              >
-                Falar com um consultor
-              </Link>
-            </div>
-          </div>
-
-          <div className="relative flex items-center justify-center">
-            <div className="absolute -inset-6 bg-gradient-brand opacity-10 blur-3xl rounded-full" />
-            <img
-              src={iconeLogo.url}
-              alt="Logo Futuro"
-              width={512}
-              height={512}
-              className="relative w-full max-w-md h-auto"
-            />
+      <div className="relative mx-auto max-w-4xl px-5 pt-16 pb-20 md:pt-24 md:pb-28 text-center">
+        <div>
+          <p className="text-sm font-medium text-magenta uppercase tracking-widest">
+            Sobre nós
+          </p>
+          <h1 className="mt-4 text-4xl md:text-6xl font-bold leading-[1.05] text-balance lowercase">
+            por que a <span className="text-gradient-brand">Futuro</span>.
+          </h1>
+          <p className="mt-6 text-lg text-muted-foreground text-balance leading-relaxed">
+            Transformamos uma jornada complexa em uma experiência simples,
+            transparente e previsível.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a
+              href="#missao"
+              className="inline-flex items-center rounded-full bg-foreground text-background px-6 py-3 text-sm font-semibold hover:opacity-90 transition"
+            >
+              Conheça nossa plataforma
+            </a>
+            <Link
+              to="/"
+              hash="contato"
+              className="inline-flex items-center rounded-full border border-magenta/30 text-magenta px-6 py-3 text-sm font-semibold hover:bg-magenta hover:text-white transition"
+            >
+              Falar com um consultor
+            </Link>
           </div>
         </div>
       </div>
