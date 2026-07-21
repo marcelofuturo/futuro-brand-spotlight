@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import iconeLogo from "@/assets/icone-logo.png.asset.json";
 
 export const Route = createFileRoute("/sobre-nos")({
   head: () => ({
