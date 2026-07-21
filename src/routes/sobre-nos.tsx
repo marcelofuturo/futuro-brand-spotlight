@@ -145,6 +145,51 @@ function Missao() {
   );
 }
 
+function Manifesto() {
+  return (
+    <section className="mx-auto max-w-6xl px-5 py-24 md:py-28">
+      <div className="rounded-[2rem] border border-border bg-card p-8 md:p-14 lg:p-18">
+        <p className="text-sm font-medium text-magenta uppercase tracking-widest">
+          Nosso Manifesto
+        </p>
+
+        <div className="mt-8 space-y-6 text-xl md:text-2xl text-foreground leading-relaxed text-balance">
+          <p>
+            Crédito é mais do que viabilizar uma compra. É abrir espaço para
+            crescer: dar o primeiro passo, expandir a casa, trocar o carro para
+            trabalhar melhor, investir no que aumenta renda, colocar a empresa
+            em movimento. É a diferença entre adiar a vida e construir o próximo
+            capítulo com intenção.
+          </p>
+          <p>
+            A Futuro existe para transformar esse “sim” em caminho. Para que
+            crescimento não dependa de sorte, de silêncio ou de ansiedade. Aqui,
+            cada etapa tem nome, cada pendência tem explicação, cada prazo tem
+            compromisso de atualização. Previsibilidade não é detalhe: é o que
+            dá calma para decidir e seguir.
+          </p>
+          <p>
+            A gente acredita que quem busca crédito não está pedindo favor,
+            está escolhendo futuro. E futuro se constrói com confiança, clareza
+            e ritmo. A Futuro é isso: um conector de oportunidades que coloca o
+            crédito para trabalhar a favor do seu crescimento, com um processo
+            humano, seguro e transparente do início ao fim.
+          </p>
+        </div>
+
+        <div className="mt-12 pt-10 border-t border-border">
+          <p className="text-3xl md:text-5xl font-bold text-gradient-brand">
+            Futuro.
+          </p>
+          <p className="mt-3 text-lg md:text-xl font-medium text-foreground">
+            Mais crédito, mais Futuro.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Fundadores() {
   const founders = [
     {
