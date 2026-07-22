@@ -202,24 +202,14 @@ function Atuacao() {
             Onde estamos
           </p>
           <h2 className="mt-3 text-4xl md:text-5xl font-bold text-balance">
-            Nossa região de atuação.
+            Onde nós já atuamos
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Atendemos clientes em todo o Brasil, com presença consolidada nos
-            estados destacados no mapa — sempre com o mesmo padrão de
-            transparência, agilidade e acompanhamento humano.
+            Atuamos em todo o Brasil. Os estados destacados no mapa são os
+            lugares onde já aprovamos operações e construímos histórias reais
+            de crédito — sempre com o mesmo padrão de transparência, agilidade
+            e acompanhamento humano.
           </p>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {regioes.map((r) => (
-              <span
-                key={r}
-                className="inline-flex items-center rounded-full border border-magenta/25 bg-magenta/5 text-magenta px-4 py-1.5 text-sm font-medium"
-              >
-                {r}
-              </span>
-            ))}
-          </div>
 
           <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-foreground">
             {Object.entries(ativos).map(([uf, nome]) => (
@@ -266,16 +256,6 @@ function Atuacao() {
                 })}
               </g>
             </svg>
-            <div className="mt-4 flex items-center justify-center gap-5 text-xs text-muted-foreground">
-              <span className="inline-flex items-center gap-2">
-                <span className="h-3 w-3 rounded-sm bg-magenta" />
-                Estados atendidos
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="h-3 w-3 rounded-sm bg-secondary border border-border" />
-                Demais estados
-              </span>
-            </div>
           </div>
         </div>
       </div>
