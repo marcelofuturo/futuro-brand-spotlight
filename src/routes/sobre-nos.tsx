@@ -29,6 +29,7 @@ function SobreNosPage() {
       <Hero />
       <Missao />
       <Manifesto />
+      <Atuacao />
       <Fundadores />
       <CTA />
       <SiteFooter />
