@@ -195,8 +195,8 @@ function Atuacao() {
 
   return (
     <section id="atuacao" className="mx-auto max-w-6xl px-5 py-24 md:py-28">
-      <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div>
+      <div className="flex flex-col gap-10 md:gap-14 items-center text-center">
+        <div className="max-w-2xl">
           <p className="text-sm font-medium text-magenta uppercase tracking-widest">
             Onde estamos
           </p>
@@ -209,24 +209,10 @@ function Atuacao() {
             de crédito — sempre com o mesmo padrão de transparência, agilidade
             e acompanhamento humano.
           </p>
-
-          <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-foreground">
-            {Object.entries(ativos).map(([uf, nome]) => (
-              <li key={uf} className="flex items-center gap-2">
-                <span
-                  aria-hidden
-                  className="inline-flex items-center justify-center h-6 w-8 rounded-md bg-magenta/10 text-magenta text-[11px] font-bold tabular-nums"
-                >
-                  {uf}
-                </span>
-                <span className="font-medium">{nome}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
-        <div className="relative">
-          <div className="relative w-full max-w-[560px] mx-auto rounded-3xl border border-border bg-gradient-to-br from-secondary/40 via-background to-background p-4 md:p-6 shadow-soft">
+        <div className="relative w-full">
+          <div className="relative w-full max-w-[720px] mx-auto rounded-3xl border border-border bg-gradient-to-br from-secondary/40 via-background to-background p-5 md:p-8 shadow-soft">
             <svg
               viewBox="-20 0 1060 1000"
               xmlns="http://www.w3.org/2000/svg"
