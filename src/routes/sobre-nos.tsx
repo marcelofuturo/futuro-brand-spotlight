@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import brazilMap from "@/assets/brazil-map.png";
 
 export const Route = createFileRoute("/sobre-nos")({
   head: () => ({
