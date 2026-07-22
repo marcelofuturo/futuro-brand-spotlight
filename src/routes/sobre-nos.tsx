@@ -191,7 +191,6 @@ function Atuacao() {
     MS: "Mato Grosso do Sul",
   };
   const ativosSet = new Set(Object.keys(ativos));
-  const regioes = ["Sul", "Sudeste", "Nordeste", "Centro-Oeste"];
   const ordered = Object.entries(BR_STATE_PATHS);
 
   return (
