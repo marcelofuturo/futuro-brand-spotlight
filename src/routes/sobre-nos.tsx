@@ -178,6 +178,99 @@ function Manifesto() {
   );
 }
 
+function Atuacao() {
+  // Pin positions calibrated to src/assets/brazil-map.png (percent of image box).
+  const pins = [
+    { cidade: "Recife", uf: "PE", x: 72, y: 34 },
+    { cidade: "Belo Horizonte", uf: "MG", x: 56, y: 57 },
+    { cidade: "Rio de Janeiro", uf: "RJ", x: 58, y: 62 },
+    { cidade: "São Paulo", uf: "SP", x: 52, y: 63 },
+    { cidade: "Cascavel", uf: "PR", x: 44, y: 66 },
+    { cidade: "Curitiba", uf: "PR", x: 50, y: 67 },
+    { cidade: "Joinville", uf: "SC", x: 52, y: 69 },
+    { cidade: "Florianópolis", uf: "SC", x: 52, y: 71 },
+    { cidade: "Torres", uf: "RS", x: 50, y: 74 },
+    { cidade: "Porto Alegre", uf: "RS", x: 46, y: 76 },
+  ];
+
+  const regioes = ["Sul", "Sudeste", "Nordeste"];
+
+  return (
+    <section id="atuacao" className="mx-auto max-w-6xl px-5 py-24 md:py-28">
+      <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <p className="text-sm font-medium text-magenta uppercase tracking-widest">
+            Onde estamos
+          </p>
+          <h2 className="mt-3 text-4xl md:text-5xl font-bold text-balance">
+            Nossa região de atuação.
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            Atendemos clientes em todo o Brasil, com presença consolidada nas
+            principais praças do Sul, Sudeste e Nordeste — sempre com o mesmo
+            padrão de transparência, agilidade e acompanhamento humano.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-2">
+            {regioes.map((r) => (
+              <span
+                key={r}
+                className="inline-flex items-center rounded-full border border-magenta/25 bg-magenta/5 text-magenta px-4 py-1.5 text-sm font-medium"
+              >
+                {r}
+              </span>
+            ))}
+          </div>
+
+          <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-foreground">
+            {pins.map((p) => (
+              <li key={`${p.cidade}-${p.uf}`} className="flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="h-1.5 w-1.5 rounded-full bg-magenta"
+                />
+                <span className="font-medium">{p.cidade}</span>
+                <span className="text-muted-foreground">/ {p.uf}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="relative">
+          <div className="relative aspect-square w-full max-w-[560px] mx-auto rounded-3xl border border-border bg-gradient-to-br from-secondary/40 via-background to-background p-4 md:p-6 shadow-soft">
+            <div className="relative w-full h-full">
+              <img
+                src={brazilMap}
+                alt="Mapa do Brasil destacando as cidades de atuação da Futuro"
+                className="w-full h-full object-contain opacity-90"
+                loading="lazy"
+                width={1024}
+                height={1024}
+              />
+              {pins.map((p) => (
+                <div
+                  key={`pin-${p.cidade}-${p.uf}`}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 group"
+                  style={{ left: `${p.x}%`, top: `${p.y}%` }}
+                >
+                  <span className="relative flex h-3 w-3">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-magenta opacity-60" />
+                    <span className="relative inline-flex h-3 w-3 rounded-full bg-magenta ring-2 ring-cream shadow-glow" />
+                  </span>
+                  <span className="pointer-events-none absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-ink text-cream text-[10px] font-medium px-2 py-0.5 opacity-0 group-hover:opacity-100 transition">
+                    {p.cidade} / {p.uf}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function Fundadores() {
   const founders = [
     {
