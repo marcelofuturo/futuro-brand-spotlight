@@ -229,7 +229,7 @@ function Atuacao() {
                     className={
                       isActive
                         ? "fill-magenta stroke-cream transition-colors"
-                        : "fill-secondary stroke-border transition-colors"
+                        : "fill-ink stroke-border transition-colors"
                     }
                     strokeWidth={1.2}
                     strokeLinejoin="round"
