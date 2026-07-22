@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import brazilMap from "@/assets/brazil-map.png";
+import { BR_STATE_PATHS } from "@/lib/br-state-paths";
 
 export const Route = createFileRoute("/sobre-nos")({
   head: () => ({
@@ -179,21 +179,20 @@ function Manifesto() {
 }
 
 function Atuacao() {
-  // Pin positions calibrated to src/assets/brazil-map.png (percent of image box).
-  const pins = [
-    { cidade: "Recife", uf: "PE", x: 72, y: 34 },
-    { cidade: "Belo Horizonte", uf: "MG", x: 56, y: 57 },
-    { cidade: "Rio de Janeiro", uf: "RJ", x: 58, y: 62 },
-    { cidade: "São Paulo", uf: "SP", x: 52, y: 63 },
-    { cidade: "Cascavel", uf: "PR", x: 44, y: 66 },
-    { cidade: "Curitiba", uf: "PR", x: 50, y: 67 },
-    { cidade: "Joinville", uf: "SC", x: 52, y: 69 },
-    { cidade: "Florianópolis", uf: "SC", x: 52, y: 71 },
-    { cidade: "Torres", uf: "RS", x: 50, y: 74 },
-    { cidade: "Porto Alegre", uf: "RS", x: 46, y: 76 },
-  ];
-
-  const regioes = ["Sul", "Sudeste", "Nordeste"];
+  const ativos: Record<string, string> = {
+    RS: "Rio Grande do Sul",
+    SC: "Santa Catarina",
+    PR: "Paraná",
+    SP: "São Paulo",
+    MG: "Minas Gerais",
+    RJ: "Rio de Janeiro",
+    PE: "Pernambuco",
+    MT: "Mato Grosso",
+    MS: "Mato Grosso do Sul",
+  };
+  const ativosSet = new Set(Object.keys(ativos));
+  const regioes = ["Sul", "Sudeste", "Nordeste", "Centro-Oeste"];
+  const ordered = Object.entries(BR_STATE_PATHS);
 
   return (
     <section id="atuacao" className="mx-auto max-w-6xl px-5 py-24 md:py-28">
@@ -206,9 +205,9 @@ function Atuacao() {
             Nossa região de atuação.
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Atendemos clientes em todo o Brasil, com presença consolidada nas
-            principais praças do Sul, Sudeste e Nordeste — sempre com o mesmo
-            padrão de transparência, agilidade e acompanhamento humano.
+            Atendemos clientes em todo o Brasil, com presença consolidada nos
+            estados destacados no mapa — sempre com o mesmo padrão de
+            transparência, agilidade e acompanhamento humano.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-2">
@@ -223,45 +222,59 @@ function Atuacao() {
           </div>
 
           <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-foreground">
-            {pins.map((p) => (
-              <li key={`${p.cidade}-${p.uf}`} className="flex items-center gap-2">
+            {Object.entries(ativos).map(([uf, nome]) => (
+              <li key={uf} className="flex items-center gap-2">
                 <span
                   aria-hidden
-                  className="h-1.5 w-1.5 rounded-full bg-magenta"
-                />
-                <span className="font-medium">{p.cidade}</span>
-                <span className="text-muted-foreground">/ {p.uf}</span>
+                  className="inline-flex items-center justify-center h-6 w-8 rounded-md bg-magenta/10 text-magenta text-[11px] font-bold tabular-nums"
+                >
+                  {uf}
+                </span>
+                <span className="font-medium">{nome}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <div className="relative">
-          <div className="relative aspect-square w-full max-w-[560px] mx-auto rounded-3xl border border-border bg-gradient-to-br from-secondary/40 via-background to-background p-4 md:p-6 shadow-soft">
-            <div className="relative w-full h-full">
-              <img
-                src={brazilMap}
-                alt="Mapa do Brasil destacando as cidades de atuação da Futuro"
-                className="w-full h-full object-contain opacity-90"
-                loading="lazy"
-                width={1024}
-                height={1024}
-              />
-              {pins.map((p) => (
-                <div
-                  key={`pin-${p.cidade}-${p.uf}`}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 group"
-                  style={{ left: `${p.x}%`, top: `${p.y}%` }}
-                >
-                  <span className="relative flex h-3 w-3">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-magenta opacity-60" />
-                    <span className="relative inline-flex h-3 w-3 rounded-full bg-magenta ring-2 ring-cream shadow-glow" />
-                  </span>
-                  <span className="pointer-events-none absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-ink text-cream text-[10px] font-medium px-2 py-0.5 opacity-0 group-hover:opacity-100 transition">
-                    {p.cidade} / {p.uf}
-                  </span>
-                </div>
-              ))}
+          <div className="relative w-full max-w-[560px] mx-auto rounded-3xl border border-border bg-gradient-to-br from-secondary/40 via-background to-background p-4 md:p-6 shadow-soft">
+            <svg
+              viewBox="-20 0 1060 1000"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-auto"
+              role="img"
+              aria-label="Mapa do Brasil destacando os estados de atuação da Futuro"
+            >
+              <g>
+                {ordered.map(([uf, d]) => {
+                  const isActive = ativosSet.has(uf);
+                  return (
+                    <path
+                      key={uf}
+                      d={d}
+                      className={
+                        isActive
+                          ? "fill-magenta stroke-cream transition-colors"
+                          : "fill-secondary stroke-border transition-colors"
+                      }
+                      strokeWidth={1.2}
+                      strokeLinejoin="round"
+                    >
+                      <title>{uf}</title>
+                    </path>
+                  );
+                })}
+              </g>
+            </svg>
+            <div className="mt-4 flex items-center justify-center gap-5 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-2">
+                <span className="h-3 w-3 rounded-sm bg-magenta" />
+                Estados atendidos
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="h-3 w-3 rounded-sm bg-secondary border border-border" />
+                Demais estados
+              </span>
             </div>
           </div>
         </div>
@@ -269,6 +282,7 @@ function Atuacao() {
     </section>
   );
 }
+
 
 
 function Fundadores() {
