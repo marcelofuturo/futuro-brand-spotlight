@@ -195,8 +195,8 @@ function Atuacao() {
 
   return (
     <section id="atuacao" className="mx-auto max-w-6xl px-5 py-24 md:py-28">
-      <div className="flex flex-col gap-10 md:gap-14 items-center text-center">
-        <div className="max-w-2xl">
+      <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
           <p className="text-sm font-medium text-magenta uppercase tracking-widest">
             Onde estamos
           </p>
@@ -212,36 +212,34 @@ function Atuacao() {
         </div>
 
         <div className="relative w-full">
-          <div className="relative w-full max-w-[720px] mx-auto rounded-3xl border border-border bg-gradient-to-br from-secondary/40 via-background to-background p-5 md:p-8 shadow-soft">
-            <svg
-              viewBox="-20 0 1060 1000"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-auto"
-              role="img"
-              aria-label="Mapa do Brasil destacando os estados de atuação da Futuro"
-            >
-              <g>
-                {ordered.map(([uf, d]) => {
-                  const isActive = ativosSet.has(uf);
-                  return (
-                    <path
-                      key={uf}
-                      d={d}
-                      className={
-                        isActive
-                          ? "fill-magenta stroke-cream transition-colors"
-                          : "fill-secondary stroke-border transition-colors"
-                      }
-                      strokeWidth={1.2}
-                      strokeLinejoin="round"
-                    >
-                      <title>{uf}</title>
-                    </path>
-                  );
-                })}
-              </g>
-            </svg>
-          </div>
+          <svg
+            viewBox="-20 0 1060 1000"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-auto"
+            role="img"
+            aria-label="Mapa do Brasil destacando os estados de atuação da Futuro"
+          >
+            <g>
+              {ordered.map(([uf, d]) => {
+                const isActive = ativosSet.has(uf);
+                return (
+                  <path
+                    key={uf}
+                    d={d}
+                    className={
+                      isActive
+                        ? "fill-magenta stroke-cream transition-colors"
+                        : "fill-secondary stroke-border transition-colors"
+                    }
+                    strokeWidth={1.2}
+                    strokeLinejoin="round"
+                  >
+                    <title>{uf}</title>
+                  </path>
+                );
+              })}
+            </g>
+          </svg>
         </div>
       </div>
     </section>
