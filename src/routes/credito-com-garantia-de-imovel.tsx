@@ -349,15 +349,15 @@ function ContentWithSidebarSimulator() {
 
   return (
     <section className="mx-auto max-w-6xl px-5 pt-12 pb-20 md:pt-16 md:pb-24">
-      <div className="grid md:grid-cols-3 gap-10 md:gap-12">
+      <div className="grid md:grid-cols-12 gap-10 md:gap-12">
         {/* Simulator: top on mobile, right on desktop */}
-        <aside className="order-first md:order-last md:col-span-1">
+        <aside className="order-first md:order-last md:col-span-5">
           <div className="md:sticky md:top-24">
             <Simulator />
           </div>
         </aside>
 
-        <div className="md:col-span-2">
+        <div className="md:col-span-7">
           <p className="text-sm font-medium text-magenta uppercase tracking-widest">
             Crédito com Garantia de Imóvel
           </p>
