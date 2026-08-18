@@ -45,54 +45,220 @@ function CreditoPage() {
   );
 }
 
+function formatBRL(value: string) {
+  const digits = value.replace(/\D/g, "");
+  if (!digits) return "";
+  const num = Number(digits) / 100;
+  return num.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+  });
+}
+
+function formatPhone(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 10) {
+    return digits.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3").replace(/[-\s]$/, "");
+  }
+  return digits.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3").replace(/[-\s]$/, "");
+}
+
 function Simulator() {
-  const [valorImovel, setValorImovel] = useState("");
-  const [emprestimo, setEmprestimo] = useState("");
-  const [prazo, setPrazo] = useState("180");
+  const [form, setForm] = useState({
+    nome: "",
+    telefone: "",
+    email: "",
+    cidade: "",
+    valorImovel: "",
+    emprestimo: "",
+    prazo: "180",
+    financiamentoAtual: "nao",
+    consentimento: false,
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const update = (field: string, value: string | boolean) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: "" }));
+  };
+
+  const validate = () => {
+    const next: Record<string, string> = {};
+    if (!form.nome.trim()) next.nome = "Informe seu nome completo";
+    if (!form.telefone.trim() || form.telefone.replace(/\D/g, "").length < 10) {
+      next.telefone = "Informe um telefone válido";
+    }
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      next.email = "Informe um e-mail válido";
+    }
+    if (!form.cidade.trim()) next.cidade = "Informe a cidade do imóvel";
+    if (!form.valorImovel) next.valorImovel = "Informe o valor do imóvel";
+    if (!form.emprestimo) next.emprestimo = "Informe o valor pretendido";
+    if (!form.consentimento) next.consentimento = "Aceite o consentimento para continuar";
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 800);
+  };
+
+  if (submitted) {
+    return (
+      <div className="rounded-3xl border border-border bg-card p-6 md:p-7 shadow-soft text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-magenta/10 text-magenta text-xl">
+          ✓
+        </div>
+        <h2 className="text-xl font-semibold">Solicitação enviada!</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Em breve um consultor entrará em contato usando os dados informados.
+        </p>
+        <button
+          type="button"
+          onClick={() => {
+            setSubmitted(false);
+            setForm({
+              nome: "",
+              telefone: "",
+              email: "",
+              cidade: "",
+              valorImovel: "",
+              emprestimo: "",
+              prazo: "180",
+              financiamentoAtual: "nao",
+              consentimento: false,
+            });
+          }}
+          className="mt-6 text-sm font-medium text-magenta hover:underline"
+        >
+          Enviar nova solicitação
+        </button>
+      </div>
+    );
+  }
+
+  const inputClass = (hasError: boolean) =>
+    `w-full rounded-2xl border ${hasError ? "border-destructive" : "border-border"} bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-magenta`;
 
   return (
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit}
       className="rounded-3xl border border-border bg-card p-6 md:p-7 shadow-soft space-y-5"
+      noValidate
     >
       <div>
-        <h2 className="text-xl font-semibold">Simule seu crédito</h2>
+        <h2 className="text-xl font-semibold">Solicitar simulação</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Estimativa rápida, sem compromisso.
+          Preencha os dados abaixo e receba uma proposta personalizada.
         </p>
       </div>
 
       <div>
-        <label htmlFor="cgi-imovel" className="block text-sm font-medium mb-2">
-          Valor do imóvel
+        <label htmlFor="cgi-nome" className="block text-sm font-medium mb-2">
+          Nome completo
         </label>
         <input
-          id="cgi-imovel"
-          inputMode="numeric"
-          placeholder="R$ 0,00"
-          value={valorImovel}
-          onChange={(e) => setValorImovel(formatBRL(e.target.value))}
-          className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-magenta"
+          id="cgi-nome"
+          type="text"
+          placeholder="Seu nome"
+          value={form.nome}
+          onChange={(e) => update("nome", e.target.value)}
+          className={inputClass(!!errors.nome)}
         />
+        {errors.nome && <p className="mt-1 text-xs text-destructive">{errors.nome}</p>}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="cgi-telefone" className="block text-sm font-medium mb-2">
+            Telefone
+          </label>
+          <input
+            id="cgi-telefone"
+            type="tel"
+            inputMode="tel"
+            placeholder="(00) 00000-0000"
+            value={form.telefone}
+            onChange={(e) => update("telefone", formatPhone(e.target.value))}
+            className={inputClass(!!errors.telefone)}
+          />
+          {errors.telefone && <p className="mt-1 text-xs text-destructive">{errors.telefone}</p>}
+        </div>
+        <div>
+          <label htmlFor="cgi-email" className="block text-sm font-medium mb-2">
+            E-mail
+          </label>
+          <input
+            id="cgi-email"
+            type="email"
+            inputMode="email"
+            placeholder="seu@email.com"
+            value={form.email}
+            onChange={(e) => update("email", e.target.value)}
+            className={inputClass(!!errors.email)}
+          />
+          {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
+        </div>
       </div>
 
       <div>
-        <label htmlFor="cgi-emprestimo" className="block text-sm font-medium mb-2">
-          Empréstimo pretendido
+        <label htmlFor="cgi-cidade" className="block text-sm font-medium mb-2">
+          Cidade do imóvel
         </label>
         <input
-          id="cgi-emprestimo"
-          inputMode="numeric"
-          placeholder="R$ 0,00"
-          value={emprestimo}
-          onChange={(e) => setEmprestimo(formatBRL(e.target.value))}
-          className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-magenta"
+          id="cgi-cidade"
+          type="text"
+          placeholder="Ex: São Paulo - SP"
+          value={form.cidade}
+          onChange={(e) => update("cidade", e.target.value)}
+          className={inputClass(!!errors.cidade)}
         />
+        {errors.cidade && <p className="mt-1 text-xs text-destructive">{errors.cidade}</p>}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="cgi-imovel" className="block text-sm font-medium mb-2">
+            Valor do imóvel
+          </label>
+          <input
+            id="cgi-imovel"
+            inputMode="numeric"
+            placeholder="R$ 0,00"
+            value={form.valorImovel}
+            onChange={(e) => update("valorImovel", formatBRL(e.target.value))}
+            className={inputClass(!!errors.valorImovel)}
+          />
+          {errors.valorImovel && <p className="mt-1 text-xs text-destructive">{errors.valorImovel}</p>}
+        </div>
+        <div>
+          <label htmlFor="cgi-emprestimo" className="block text-sm font-medium mb-2">
+            Empréstimo pretendido
+          </label>
+          <input
+            id="cgi-emprestimo"
+            inputMode="numeric"
+            placeholder="R$ 0,00"
+            value={form.emprestimo}
+            onChange={(e) => update("emprestimo", formatBRL(e.target.value))}
+            className={inputClass(!!errors.emprestimo)}
+          />
+          {errors.emprestimo && <p className="mt-1 text-xs text-destructive">{errors.emprestimo}</p>}
+        </div>
       </div>
 
       <div>
         <label htmlFor="cgi-prazo" className="block text-sm font-medium mb-2">
-          Prazo: <span className="text-magenta">{prazo} meses</span>
+          Prazo desejado: <span className="text-magenta">{form.prazo} meses</span>
         </label>
         <input
           id="cgi-prazo"
@@ -100,8 +266,8 @@ function Simulator() {
           min={12}
           max={240}
           step={12}
-          value={prazo}
-          onChange={(e) => setPrazo(e.target.value)}
+          value={form.prazo}
+          onChange={(e) => update("prazo", e.target.value)}
           className="w-full accent-magenta"
         />
         <div className="flex justify-between text-xs text-muted-foreground mt-1">
@@ -110,15 +276,59 @@ function Simulator() {
         </div>
       </div>
 
+      <fieldset>
+        <legend className="block text-sm font-medium mb-2">Possui financiamento atual no imóvel?</legend>
+        <div className="flex gap-4">
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+            <input
+              type="radio"
+              name="financiamento"
+              value="sim"
+              checked={form.financiamentoAtual === "sim"}
+              onChange={() => update("financiamentoAtual", "sim")}
+              className="accent-magenta"
+            />
+            Sim
+          </label>
+          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+            <input
+              type="radio"
+              name="financiamento"
+              value="nao"
+              checked={form.financiamentoAtual === "nao"}
+              onChange={() => update("financiamentoAtual", "nao")}
+              className="accent-magenta"
+            />
+            Não
+          </label>
+        </div>
+      </fieldset>
+
+      <label className="flex items-start gap-3 text-sm text-muted-foreground cursor-pointer">
+        <input
+          type="checkbox"
+          checked={form.consentimento}
+          onChange={(e) => update("consentimento", e.target.checked)}
+          className="mt-0.5 accent-magenta"
+        />
+        <span>
+          Autorizo a Futuro a entrar em contato pelos canais informados para envio da simulação e ofertas de crédito.{" "}
+          <span className="text-foreground">Concordo com a Política de Privacidade.</span>
+        </span>
+      </label>
+      {errors.consentimento && <p className="-mt-3 text-xs text-destructive">{errors.consentimento}</p>}
+
       <button
         type="submit"
-        className="w-full rounded-full bg-foreground text-background px-6 py-3 font-semibold hover:opacity-90 transition"
+        disabled={loading}
+        className="w-full rounded-full bg-foreground text-background px-6 py-3 font-semibold hover:opacity-90 transition disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Simular
+        {loading ? "Enviando..." : "Solicitar Simulação"}
       </button>
     </form>
   );
 }
+
 
 function ContentWithSidebarSimulator() {
   const advantages = [
