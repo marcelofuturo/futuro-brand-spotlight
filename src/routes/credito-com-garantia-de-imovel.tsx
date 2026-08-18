@@ -45,17 +45,6 @@ function CreditoPage() {
   );
 }
 
-function formatBRL(value: string) {
-  const digits = value.replace(/\D/g, "");
-  if (!digits) return "";
-  const num = Number(digits) / 100;
-  return num.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    minimumFractionDigits: 2,
-  });
-}
-
 function formatPhone(value: string) {
   const digits = value.replace(/\D/g, "").slice(0, 11);
   if (digits.length <= 10) {
